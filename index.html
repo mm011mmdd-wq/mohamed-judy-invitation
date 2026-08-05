@@ -3,327 +3,339 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة زفاف ملكية | محمد وجودي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Cinzel:wght@500;700;900&display=swap" rel="stylesheet">
+    <title>دعوة زفاف | محمد وجودي</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Cinzel:wght@600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
         :root {
-            --bg-dark: #030a16;
+            --bg-dark: #020813;
             --royal-blue: #0a192f;
-            --silver-primary: #e6f1ff;
+            --royal-accent: #0f2b5c;
             --silver-bright: #ffffff;
-            --silver-gradient: linear-gradient(135deg, #e6e6e6 0%, #ffffff 25%, #b3b3b3 50%, #ffffff 75%, #8c8c8c 100%);
-            --silver-glow: 0 0 25px rgba(230, 241, 255, 0.5);
-            --font-ar-title: 'Amiri', serif;
-            --font-en-title: 'Cinzel', serif;
+            --silver-glow: 0 0 25px rgba(255, 255, 255, 0.6);
+            --silver-gradient: linear-gradient(135deg, #e6e6e6 0%, #ffffff 40%, #a6a6a6 70%, #ffffff 100%);
+            --font-ar: 'Amiri', serif;
+            --font-en: 'Cinzel', serif;
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+        
         body {
             background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(circle at 50% 15%, #0e2a4a 0%, transparent 70%),
-                radial-gradient(circle at 20% 80%, #07172e 0%, transparent 50%),
-                radial-gradient(2px 2px at 40px 60px, #ffffff, transparent),
-                radial-gradient(1.5px 1.5px at 110px 140px, rgba(230, 241, 255, 0.7), transparent);
-            background-size: 100% 100%, 100% 100%, 150px 150px, 200px 200px;
             color: #f8fafc;
             font-family: 'Cairo', sans-serif;
             min-height: 100vh;
-            overflow-x: hidden;
             text-align: center;
+            overflow-x: hidden;
+            padding-bottom: 60px;
         }
 
-        /* Top Bar Controls */
-        .controls-bar {
-            position: fixed; top: 15px; left: 15px; right: 15px;
-            display: flex; justify-content: space-between; z-index: 1000; pointer-events: none;
-        }
-        .controls-bar * { pointer-events: auto; }
-        .control-btn {
-            background: rgba(10, 25, 47, 0.85);
-            border: 1px solid rgba(230, 241, 255, 0.4);
-            color: var(--silver-bright); padding: 8px 16px; border-radius: 30px;
-            font-size: 0.85rem; font-weight: 600; cursor: pointer;
-            backdrop-filter: blur(10px); transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
-        }
-        .control-btn:hover { transform: translateY(-2px); border-color: #ffffff; box-shadow: var(--silver-glow); }
-
-        /* Royal Envelope Overlay */
-        .envelope-overlay {
+        #sparkleCanvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at center, #0a1d36 0%, #020813 100%); z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
-            transition: all 0.8s ease-in-out;
+            pointer-events: none; z-index: 1;
         }
+
+        .top-bar {
+            position: fixed; top: 15px; left: 15px; right: 15px;
+            display: flex; justify-content: space-between; z-index: 100; pointer-events: none;
+        }
+        .top-bar * { pointer-events: auto; }
         
-        .envelope-box {
-            width: 90%; max-width: 440px;
-            background: linear-gradient(145deg, #0d2240, #040d1a);
-            border: 2px solid transparent; border-image: var(--silver-gradient) 1;
-            border-radius: 20px; padding: 45px 25px; text-align: center;
-            box-shadow: 0 0 50px rgba(230, 241, 255, 0.2); cursor: pointer;
-            position: relative; overflow: hidden;
-        }
-        .envelope-box::before {
-            content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at center, rgba(230, 241, 255, 0.1), transparent 70%);
-        }
-        .wax-seal {
-            width: 80px; height: 80px; margin: 0 auto 20px auto;
-            background: var(--silver-gradient); border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 900; color: #040d1a;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
-        }
-        .envelope-title { font-family: var(--font-ar-title); font-size: 2rem; color: var(--silver-bright); margin-bottom: 10px; }
-        .envelope-sub { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 25px; }
-        .open-btn {
-            background: var(--silver-gradient); color: #040d1a; border: none;
-            padding: 12px 35px; border-radius: 30px; font-weight: 700; font-size: 1.05rem;
-            cursor: pointer; transition: 0.3s; box-shadow: 0 5px 20px rgba(255,255,255,0.4);
-        }
-        .open-btn:hover { transform: scale(1.06); }
-
-        /* Main Container */
-        .wrapper { max-width: 800px; margin: 0 auto; padding: 80px 20px 50px 20px; }
-        .card-panel {
-            background: rgba(10, 25, 47, 0.75);
-            border: 1px solid rgba(230, 241, 255, 0.3);
-            border-radius: 28px; padding: 45px 25px; margin-bottom: 30px;
-            backdrop-filter: blur(16px); box-shadow: 0 20px 50px rgba(0,0,0,0.7);
-            position: relative; overflow: hidden;
-        }
-
-        /* Glowing Crown & Monogram Frame */
-        .royal-frame {
-            position: relative; width: 190px; height: 190px; margin: 0 auto 25px auto;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .royal-circle {
-            position: absolute; inset: 0; border-radius: 50%;
-            border: 2px solid transparent; background: linear-gradient(rgba(10,25,47,0.9), rgba(10,25,47,0.9)) padding-box, var(--silver-gradient) border-box;
-            animation: spinFrame 15s linear infinite; box-shadow: var(--silver-glow);
-        }
-        @keyframes spinFrame { 100% { transform: rotate(360deg); } }
-        .monogram-content { position: relative; z-index: 2; }
-        .monogram-content i { font-size: 1.5rem; color: #ffffff; margin-bottom: 5px; }
-        .couple-names-circle {
-            font-family: 'Amiri', serif; font-size: 1.8rem; font-weight: 700;
-            background: var(--silver-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-        }
-
-        .section-title {
-            font-family: var(--font-ar-title); font-size: 1.8rem; color: #ffffff;
-            margin-bottom: 20px; text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-        }
-
-        /* Countdown */
-        .countdown { display: flex; justify-content: center; gap: 12px; margin: 25px 0; direction: ltr; }
-        .time-box {
-            background: rgba(4, 13, 26, 0.85); border: 1px solid rgba(230, 241, 255, 0.4);
-            border-radius: 14px; padding: 12px 8px; min-width: 70px;
+        .icon-btn {
+            background: rgba(10, 25, 47, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: var(--silver-bright); padding: 10px 20px; border-radius: 30px;
+            font-size: 0.85rem; font-weight: 700; cursor: pointer;
+            backdrop-filter: blur(12px); transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            display: inline-flex; align-items: center; gap: 8px;
         }
-        .time-box .num { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #ffffff; display: block; }
-        .time-box .lbl { font-size: 0.75rem; color: #cbd5e1; }
+        .icon-btn:hover { transform: translateY(-3px) scale(1.05); border-color: #ffffff; box-shadow: var(--silver-glow); }
 
-        /* Timeline Grid */
-        .timeline { display: flex; flex-direction: column; gap: 20px; text-align: right; margin-top: 20px; }
-        body.en .timeline { text-align: left; }
-        .timeline-item {
-            display: flex; align-items: center; gap: 15px;
-            background: rgba(255,255,255,0.03); border-right: 3px solid #e6e6e6;
-            padding: 15px; border-radius: 8px;
+        .container { max-width: 650px; margin: 0 auto; padding: 75px 20px 20px 20px; position: relative; z-index: 2; }
+
+        .glass-card {
+            background: rgba(10, 25, 47, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 30px; padding: 40px 20px; margin-bottom: 30px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255, 255, 255, 0.05);
+            transition: transform 0.6s ease, opacity 0.6s ease;
         }
-        body.en .timeline-item { border-right: none; border-left: 3px solid #e6e6e6; }
-        .timeline-icon {
-            width: 45px; height: 45px; border-radius: 50%; background: rgba(230,241,255,0.1);
+
+        .crown-container {
+            width: 70px; height: 70px; margin: 0 auto 15px auto;
+            border-radius: 50%; background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             display: flex; align-items: center; justify-content: center;
-            color: #ffffff; font-size: 1.2rem; flex-shrink: 0; box-shadow: 0 0 10px rgba(255,255,255,0.2);
+            box-shadow: var(--silver-glow);
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.3); transform: scale(1); }
+            50% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.8); transform: scale(1.08); }
+        }
+        .crown-container i { font-size: 2rem; color: #ffffff; }
+
+        .names-title {
+            font-family: var(--font-ar); font-size: 3.2rem; font-weight: 700;
+            background: var(--silver-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            line-height: 1.2; margin-bottom: 15px; text-shadow: 0 0 20px rgba(255,255,255,0.2);
         }
 
-        /* Guest Messages Section */
-        .wish-input {
-            width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(230,241,255,0.3);
-            background: rgba(4, 13, 26, 0.8); color: #fff; margin-bottom: 10px; font-family: inherit;
+        .wedding-badge {
+            display: inline-block; padding: 6px 22px; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4);
+            font-size: 0.9rem; color: #ffffff; margin-bottom: 20px; letter-spacing: 1px;
         }
-        .wish-btn {
-            background: var(--silver-gradient); color: #040d1a; border: none;
-            padding: 10px 25px; border-radius: 20px; font-weight: 700; cursor: pointer; width: 100%;
+
+        .quran-verse {
+            font-family: var(--font-ar); font-size: 1.2rem; color: #cbd5e1;
+            line-height: 1.8; margin-bottom: 25px;
         }
-        .wishes-list { margin-top: 20px; max-height: 200px; overflow-y: auto; text-align: right; }
-        body.en .wishes-list { text-align: left; }
-        .wish-card {
-            background: rgba(255,255,255,0.05); border-radius: 10px; padding: 10px 15px;
-            margin-bottom: 10px; border-right: 2px solid #ffffff;
+        /* Countdown */
+        .countdown-container { display: flex; justify-content: center; gap: 12px; direction: ltr; margin-top: 25px; }
+        .count-box {
+            background: rgba(3, 10, 22, 0.85); border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 18px; padding: 14px 8px; min-width: 72px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            transition: 0.3s;
         }
+        .count-box:hover { border-color: #ffffff; transform: translateY(-3px); }
+        .count-num { font-family: var(--font-en); font-size: 1.8rem; font-weight: 800; color: #ffffff; display: block; }
+        .count-label { font-size: 0.75rem; color: #94a3b8; margin-top: 4px; }
+
+        .card-header { font-family: var(--font-ar); font-size: 1.9rem; color: #ffffff; margin-bottom: 25px; }
+
+        /* Timeline */
+        .timeline-list { display: flex; flex-direction: column; gap: 15px; text-align: right; }
+        body.en .timeline-list { text-align: left; }
+        .timeline-row {
+            display: flex; align-items: center; gap: 15px;
+            background: rgba(255,255,255,0.04); border-right: 3px solid #ffffff;
+            padding: 15px; border-radius: 14px; transition: 0.3s;
+        }
+        .timeline-row:hover { background: rgba(255,255,255,0.08); transform: translateX(-5px); }
+        body.en .timeline-row:hover { transform: translateX(5px); }
+        body.en .timeline-row { border-right: none; border-left: 3px solid #ffffff; }
+        .timeline-ico {
+            width: 45px; height: 45px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); color: #fff;
+            display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+            font-size: 1.1rem; box-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        /* Interactive Hearts Button */
+        .celebrate-btn {
+            background: transparent; border: 1px solid rgba(255,255,255,0.4);
+            color: #ffffff; padding: 12px 25px; border-radius: 30px;
+            font-weight: 700; cursor: pointer; margin-top: 15px;
+            transition: 0.3s; display: inline-flex; align-items: center; gap: 8px;
+        }
+        .celebrate-btn:hover { background: rgba(255,255,255,0.15); transform: scale(1.05); }
 
         /* RSVP Button */
-        .rsvp-btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--silver-gradient); color: #040d1a; text-decoration: none;
+        .whatsapp-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            background: var(--silver-gradient); color: #030a16; text-decoration: none;
             padding: 16px 35px; border-radius: 50px; font-weight: 800; font-size: 1.1rem;
-            box-shadow: 0 0 25px rgba(230, 241, 255, 0.4); transition: 0.3s; width: 100%; max-width: 320px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3); transition: 0.3s; width: 100%; max-width: 320px;
         }
-        .rsvp-btn:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(255, 255, 255, 0.7); }
+        .whatsapp-btn:hover { transform: translateY(-4px); box-shadow: 0 0 35px rgba(255,255,255,0.8); }
+
+        /* Form Controls */
+        .input-field {
+            width: 100%; padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.25);
+            background: rgba(3, 10, 22, 0.8); color: #fff; margin-bottom: 12px; font-family: inherit;
+        }
+        .submit-btn {
+            background: var(--silver-gradient); color: #030a16; border: none;
+            padding: 12px 20px; border-radius: 20px; font-weight: 800; cursor: pointer; width: 100%;
+        }
     </style>
 </head>
 <body>
 
-    <div class="controls-bar">
-        <button class="control-btn" onclick="toggleAudio()"><i id="musicIcon" class="fas fa-music"></i></button>
-        <button class="control-btn" onclick="toggleLang()"><i class="fas fa-globe"></i> <span id="langBtnText">English</span></button>
+    <canvas id="sparkleCanvas"></canvas>
+
+    <div class="top-bar">
+        <button class="icon-btn" onclick="toggleMusic()"><i id="musicIcon" class="fas fa-music"></i> <span id="musicText">الموسيقى</span></button>
+        <button class="icon-btn" onclick="toggleLanguage()"><i class="fas fa-globe"></i> <span id="langText">English</span></button>
     </div>
 
-    <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-piano-100-bpm-121529.mp3"></audio>
+    <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-piano-100-bpm-121529.mp3"></audio>
 
-    <!-- Royal Envelope Overlay -->
-    <div class="envelope-overlay" id="envelopeScreen" onclick="dismissEnvelope()">
-        <div class="envelope-box">
-            <div class="wax-seal">M&J</div>
-            <div class="envelope-title" id="envTitle">دعوة زفاف ملكية</div>
-            <div class="envelope-sub" id="envSub">انقر لفتح الرسالة الملكية واستعراض التفاصيل</div>
-            <button class="open-btn" id="envBtn">افتح الدعوة</button>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="wrapper">
+    <div class="container">
         
-        <!-- Header Card -->
-        <div class="card-panel" data-aos="fade-up">
-            <div class="royal-frame">
-                <div class="royal-circle"></div>
-                <div class="monogram-content">
-                    <i class="fas fa-crown"></i>
-                    <div class="couple-names-circle" id="namesText">محمد<br>&<br>جودي</div>
-                </div>
-            </div>
-            <div class="section-title" id="invHeader">دعوة لحضور حفل الزفاف الملكي</div>
-            <p style="color: #cbd5e1; line-height: 1.8; margin-bottom: 20px;" id="invQuote">
+        <!-- Main Invitation Card -->
+        <div class="glass-card">
+            <div class="crown-container"><i class="fas fa-crown"></i></div>
+            <div class="wedding-badge" id="badgeText">دعوة زفاف ملكية</div>
+            <div class="names-title" id="namesTitle">محمد & جودي</div>
+            <p class="quran-verse" id="verseText">
                 "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"<br>
-                يسعدنا ويشرفنا حضوركم لمشاركتنا أروع لحظات العمر في يوم زفافنا المميز.
+                يسعدنا أن تتوج فرحتنا بحضوركم الكريم لمشاركتنا أجمل لحظات عمرنا.
             </p>
 
-            <div class="countdown">
-                <div class="time-box"><span class="num" id="days">00</span><span class="lbl" id="lDays">يوم</span></div>
-                <div class="time-box"><span class="num" id="hours">00</span><span class="lbl" id="lHours">ساعة</span></div>
-                <div class="time-box"><span class="num" id="mins">00</span><span class="lbl" id="lMins">دقيقة</span></div>
-                <div class="time-box"><span class="num" id="secs">00</span><span class="lbl" id="lSecs">ثانية</span></div>
+            <button class="celebrate-btn" onclick="triggerConfetti()"><i class="fas fa-heart" style="color:#ffffff;"></i> شاركنا الفرحة</button>
+
+            <div class="countdown-container">
+                <div class="count-box"><span class="count-num" id="d">00</span><span class="count-label" id="lD">يوم</span></div>
+                <div class="count-box"><span class="count-num" id="h">00</span><span class="count-label" id="lH">ساعة</span></div>
+                <div class="count-box"><span class="count-num" id="m">00</span><span class="count-label" id="lM">دقيقة</span></div>
+                <div class="count-box"><span class="count-num" id="s">00</span><span class="count-label" id="lS">ثانية</span></div>
             </div>
         </div>
 
-        <!-- Event Timeline -->
-        <div class="card-panel" data-aos="fade-up">
-            <div class="section-title" id="timeTitle">برنامج الحفل</div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-glass-cheers"></i></div>
-                    <div><h4 id="t1H">8:00 مساءً - استقبال الضيوف</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="t1P">بداية الترحيب بالضيوف الكرام في القاعة</p></div>
+        <!-- Timeline Program -->
+        <div class="glass-card">
+            <div class="card-header" id="progHeader">مواعيد الحفل</div>
+            <div class="timeline-list">
+                <div class="timeline-row">
+                    <div class="timeline-ico"><i class="fas fa-glass-cheers"></i></div>
+                    <div><h4 id="p1Title">8:00 مساءً - استقبال الضيوف</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="p1Sub">ترحيب بالمعازيم والضيوف الكرام</p></div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-heart"></i></div>
-                    <div><h4 id="t2H">9:00 مساءً - زفة العروسين</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="t2P">دخول العروسين وبدء الفقرات السعيدة</p></div>
+                <div class="timeline-row">
+                    <div class="timeline-ico"><i class="fas fa-ring"></i></div>
+                    <div><h4 id="p2Title">9:00 مساءً - دخول العروسين</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="p2Sub">بدء فقرات الفرح والاحتفال</p></div>
                 </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
-                    <div><h4 id="t3H">10:30 مساءً - بوفيه العشاء</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="t3P">تناول العشاء والتقاط الصور التذكارية</p></div>
+                <div class="timeline-row">
+                    <div class="timeline-ico"><i class="fas fa-utensils"></i></div>
+                    <div><h4 id="p3Title">10:30 مساءً - العشاء</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="p3Sub">التقاط الصور التذكارية والبوفيه</p></div>
                 </div>
             </div>
         </div>
-
-        <!-- Guest Wishbook -->
-        <div class="card-panel" data-aos="fade-up">
-            <div class="section-title" id="wishTitle">سجل تهاني المعازيم</div>
-            <input type="text" id="guestName" class="wish-input" placeholder="اسمك الكريم">
-            <textarea id="guestMsg" class="wish-input" rows="3" placeholder="اكتب تهنئتك للعروسين هنا..."></textarea>
-            <button class="wish-btn" onclick="addWish()" id="sendWishBtn">إرسال التهنئة</button>
-            <div class="wishes-list" id="wishesList"></div>
+         <!-- Wishes -->
+        <div class="glass-card">
+            <div class="card-header" id="wishHeader">تهاني الأصدقاء</div>
+            <input type="text" id="gName" class="input-field" placeholder="اسمك الكريم">
+            <textarea id="gMsg" class="input-field" rows="2" placeholder="اكتب تهنئتك للعروسين هنا..."></textarea>
+            <button class="submit-btn" onclick="sendWish()" id="wishBtn">إرسال التهنئة</button>
+            <div id="wList" style="margin-top:15px; text-align:right;"></div>
         </div>
 
-        <!-- RSVP & Venue -->
-        <div class="card-panel" data-aos="fade-up">
-            <div class="section-title" id="venueHeader">المكان وتأكيد الحضور</div>
-            <p style="color: #cbd5e1; margin-bottom: 20px;" id="venueVal"><i class="fas fa-map-marker-alt" style="color:#ffffff;"></i> قاعة ليليتي - الجمعة، 7 أغسطس 2026 (8:00 مساءً)</p>
-            <a href="https://wa.me/201224992674?text=%D8%A3%D9%84%D9%81%20%D9%85%D8%A8%D8%B1%D9%88%D9%83!%20%D9%8A%D8%B3%D8%B9%D8%AF%D9%86%D9%8A%20%D8%AA%D8%A3%D9%83%D9%8A%D8%AF%20%D8%AD%D8%B6%D9%88%D8%B1%D9%8A%20%D8%AD%D9%81%D9%84%20%D8%A7%D9%8D%D9%84%D8%B2%D9%81%D8%A7%D9%81" class="rsvp-btn" target="_blank" id="rsvpBtnText">
+        <!-- Venue & RSVP -->
+        <div class="glass-card">
+            <div class="card-header" id="rsvpHeader">المكان وتأكيد الحضور</div>
+            <p style="color:#cbd5e1; margin-bottom:20px; font-size: 1.05rem;" id="venueInfo"><i class="fas fa-map-marker-alt" style="color:#ffffff;"></i> قاعة ليليتي - الجمعة، 7 أغسطس 2026 (8:00 مساءً)</p>
+            <a href="https://wa.me/201224992674?text=%D8%A3%D9%84%D9%81%20%D9%85%D8%A8%D8%B1%D9%88%D9%83!%20%D9%8A%D8%B3%D8%B9%D8%AF%D9%86%D9%8A%20%D8%AA%D8%A3%D9%83%D9%8A%D8%AF%20%D8%AD%D8%B6%D9%88%D8%B1%D9%8A" target="_blank" class="whatsapp-btn" id="waBtn">
                 <i class="fab fa-whatsapp"></i> تأكيد الحضور عبر واتساب
             </a>
         </div>
 
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script>
-        AOS.init({ duration: 1000, once: true });
-        let isArabic = true;
+        /* Sparkle Background Animation */
+        const canvas = document.getElementById('sparkleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
 
-        function dismissEnvelope() {
-            const env = document.getElementById('envelopeScreen');
-            env.style.opacity = '0';
-            setTimeout(() => { env.style.display = 'none'; }, 800);
-            toggleAudio();
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
 
-        const audio = document.getElementById("bgAudio");
-        const musicIcon = document.getElementById("musicIcon");
-        function toggleAudio() {
-            if (audio.paused) { 
-                audio.play().catch(() => {});
-                musicIcon.className = "fas fa-pause"; 
-            } else { 
-                audio.pause(); 
-                musicIcon.className = "fas fa-music"; 
+        class Particle {
+            constructor() { this.reset(); }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.alpha = Math.random();
+                this.speed = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.y -= this.speed;
+                this.alpha += (Math.random() - 0.5) * 0.02;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.abs(this.alpha);
+                ctx.fillStyle = "#ffffff";
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
             }
         }
 
-        function toggleLang() {
-            isArabic = !isArabic;
-            document.body.dir = isArabic ? "rtl" : "ltr";
-            document.getElementById('langBtnText').innerText = isArabic ? "English" : "العربية";
-            document.getElementById('envTitle').innerText = isArabic ? "دعوة زفاف ملكية" : "Royal Wedding Invitation";
-            document.getElementById('envSub').innerText = isArabic ? "انقر لفتح الرسالة الملكية واستعراض التفاصيل" : "Click to open the royal envelope";
-            document.getElementById('envBtn').innerText = isArabic ? "افتح الدعوة" : "Open Invitation";
-            document.getElementById('namesText').innerHTML = isArabic ? "محمد<br>&<br>جودي" : "Mohamed<br>&<br>Judy";
-            document.getElementById('invHeader').innerText = isArabic ? "دعوة لحضور حفل الزفاف الملكي" : "Royal Wedding Invitation";
-            document.getElementById('invQuote').innerText = isArabic ? '"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"' : "Request the honor of your presence at their wedding celebration";
-            document.getElementById('timeTitle').innerText = isArabic ? "برنامج الحفل" : "Wedding Program";
-            document.getElementById('wishTitle').innerText = isArabic ? "سجل تهاني المعازيم" : "Guestbook Wishes";
-            document.getElementById('guestName').placeholder = isArabic ? "اسمك الكريم" : "Your Name";
-            document.getElementById('guestMsg').placeholder = isArabic ? "اكتب تهنئتك للعروسين هنا..." : "Write your wishes here...";
-            document.getElementById('sendWishBtn').innerText = isArabic ? "إرسال التهنئة" : "Send Wishes";
-            document.getElementById('venueHeader').innerText = isArabic ? "المكان وتأكيد الحضور" : "Venue & RSVP";
-            document.getElementById('rsvpBtnText').innerHTML = isArabic ? '<i class="fab fa-whatsapp"></i> تأكيد الحضور عبر واتساب' : '<i class="fab fa-whatsapp"></i> RSVP via WhatsApp';
+        for (let i = 0; i < 70; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        /* Interactive Confetti */
+        function triggerConfetti() {
+            confetti({
+                particleCount: 80,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ffffff', '#e6f1ff', '#b3b3b3']
+            });
         }
 
-        function addWish() {
-            const name = document.getElementById('guestName').value.trim();
-            const msg = document.getElementById('guestMsg').value.trim();
+        /* Language & Audio Controls */
+        let isAr = true;
+        const music = document.getElementById('bgMusic');
+        const mIcon = document.getElementById('musicIcon');
+
+        function toggleMusic() {
+            if (music.paused) { music.play(); mIcon.className = "fas fa-pause"; }
+            else { music.pause(); mIcon.className = "fas fa-music"; }
+        }
+
+        function toggleLanguage() {
+            isAr = !isAr;
+            document.body.dir = isAr ? "rtl" : "ltr";
+            document.getElementById('langText').innerText = isAr ? "English" : "العربية";
+            document.getElementById('badgeText').innerText = isAr ? "دعوة زفاف ملكية" : "Royal Wedding Invitation";
+            document.getElementById('namesTitle').innerText = isAr ? "محمد & جودي" : "Mohamed & Judy";
+            document.getElementById('verseText').innerHTML = isAr ? '"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"<br>يسعدنا أن تتوج فرحتنا بحضوركم الكريم لمشاركتنا أجمل لحظات عمرنا.' : "We request the honor of your presence to celebrate our wedding day.";
+            document.getElementById('progHeader').innerText = isAr ? "مواعيد الحفل" : "Event Schedule";
+            document.getElementById('wishHeader').innerText = isAr ? "تهاني الأصدقاء" : "Guestbook";
+            document.getElementById('rsvpHeader').innerText = isAr ? "المكان وتأكيد الحضور" : "Venue & RSVP";
+            document.getElementById('waBtn').innerHTML = isAr ? '<i class="fab fa-whatsapp"></i> تأكيد الحضور عبر واتساب' : '<i class="fab fa-whatsapp"></i> RSVP via WhatsApp';
+        }
+
+        function sendWish() {
+            const name = document.getElementById('gName').value.trim();
+            const msg = document.getElementById('gMsg').value.trim();
             if(name && msg) {
-                const list = document.getElementById('wishesList');
-                const card = document.createElement('div');
-                card.className = 'wish-card';
-                card.innerHTML = `<strong>${name}</strong><p style="font-size:0.85rem; color:#cbd5e1;">${msg}</p>`;
-                list.prepend(card);
-                document.getElementById('guestName').value = '';
-                document.getElementById('guestMsg').value = '';
+                const list = document.getElementById('wList');
+                const box = document.createElement('div');
+                box.style.background = 'rgba(255,255,255,0.05)';
+                box.style.padding = '12px';
+                box.style.borderRadius = '10px';
+                box.style.marginBottom = '8px';
+                box.style.borderRight = '3px solid #ffffff';
+                box.innerHTML = `<strong>${name}</strong><p style="font-size:0.85rem; color:#cbd5e1;">${msg}</p>`;
+                list.prepend(box);
+                document.getElementById('gName').value = '';
+                document.getElementById('gMsg').value = '';
             }
         }
 
-        const targetDate = new Date("August 7, 2026 20:00:00").getTime();
+        /* Target Countdown */
+        const target = new Date("August 7, 2026 20:00:00").getTime();
         setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
+            const diff = target - new Date().getTime();
             if(diff > 0) {
-                document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById("mins").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById("secs").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+                document.getElementById("d").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+                document.getElementById("h").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+                document.getElementById("m").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+                document.getElementById("s").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
             }
         }, 1000);
     </script>
 </body>
 </html>
+       
