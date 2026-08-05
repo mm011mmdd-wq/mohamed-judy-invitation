@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>دعوة زفاف ملكية | محمد وجودي</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Cinzel:wght@500;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Cinzel:wght@500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <style>
         :root {
-            --bg-dark: #040d1a;
+            --bg-dark: #030a16;
             --royal-blue: #0a192f;
-            --royal-blue-light: #112240;
-            --gold-gradient: linear-gradient(135deg, #bf953f 0%, #fcf6ba 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-            --silver-glow: 0 0 25px rgba(230, 241, 255, 0.25);
-            --gold-glow: 0 0 25px rgba(212, 175, 55, 0.4);
+            --silver-primary: #e6f1ff;
+            --silver-bright: #ffffff;
+            --silver-gradient: linear-gradient(135deg, #e6e6e6 0%, #ffffff 25%, #b3b3b3 50%, #ffffff 75%, #8c8c8c 100%);
+            --silver-glow: 0 0 25px rgba(230, 241, 255, 0.5);
             --font-ar-title: 'Amiri', serif;
             --font-en-title: 'Cinzel', serif;
         }
@@ -23,10 +23,11 @@
         body {
             background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(circle at 50% 20%, #0d2240 0%, transparent 60%),
-                radial-gradient(1.5px 1.5px at 30px 50px, rgba(212, 175, 55, 0.5), transparent),
-                radial-gradient(2px 2px at 80px 120px, rgba(255, 255, 255, 0.4), transparent);
-            background-size: 100% 100%, 120px 120px, 180px 180px;
+                radial-gradient(circle at 50% 15%, #0e2a4a 0%, transparent 70%),
+                radial-gradient(circle at 20% 80%, #07172e 0%, transparent 50%),
+                radial-gradient(2px 2px at 40px 60px, #ffffff, transparent),
+                radial-gradient(1.5px 1.5px at 110px 140px, rgba(230, 241, 255, 0.7), transparent);
+            background-size: 100% 100%, 100% 100%, 150px 150px, 200px 200px;
             color: #f8fafc;
             font-family: 'Cairo', sans-serif;
             min-height: 100vh;
@@ -42,282 +43,50 @@
         .controls-bar * { pointer-events: auto; }
         .control-btn {
             background: rgba(10, 25, 47, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.5);
-            color: #fcf6ba; padding: 8px 16px; border-radius: 30px;
+            border: 1px solid rgba(230, 241, 255, 0.4);
+            color: var(--silver-bright); padding: 8px 16px; border-radius: 30px;
             font-size: 0.85rem; font-weight: 600; cursor: pointer;
             backdrop-filter: blur(10px); transition: all 0.3s;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-        .control-btn:hover { transform: translateY(-2px); border-color: #fcf6ba; box-shadow: var(--gold-glow); }
+        .control-btn:hover { transform: translateY(-2px); border-color: #ffffff; box-shadow: var(--silver-glow); }
 
         /* Royal Envelope Overlay */
         .envelope-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #020813; z-index: 9999;
+            background: radial-gradient(circle at center, #0a1d36 0%, #020813 100%); z-index: 9999;
             display: flex; justify-content: center; align-items: center;
-            transition: all 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: all 0.8s ease-in-out;
         }
-        .envelope-overlay.opened { opacity: 0; visibility: hidden; transform: translateY(-100%); }
         
         .envelope-box {
             width: 90%; max-width: 440px;
-            background: linear-gradient(145deg, #0a192f, #040d1a);
-            border: 2px solid transparent; border-image: var(--gold-gradient) 1;
+            background: linear-gradient(145deg, #0d2240, #040d1a);
+            border: 2px solid transparent; border-image: var(--silver-gradient) 1;
             border-radius: 20px; padding: 45px 25px; text-align: center;
-            box-shadow: 0 0 50px rgba(212, 175, 55, 0.25); cursor: pointer;
+            box-shadow: 0 0 50px rgba(230, 241, 255, 0.2); cursor: pointer;
             position: relative; overflow: hidden;
         }
         .envelope-box::before {
             content: ''; position: absolute; inset: 0;
-            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.1), transparent 70%);
+            background: radial-gradient(circle at center, rgba(230, 241, 255, 0.1), transparent 70%);
         }
         .wax-seal {
             width: 80px; height: 80px; margin: 0 auto 20px auto;
-            background: var(--gold-gradient); border-radius: 50%;
+            background: var(--silver-gradient); border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 900; color: #040d1a;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
         }
-        .envelope-title { font-family: var(--font-ar-title); font-size: 2rem; color: #fcf6ba; margin-bottom: 10px; }
-        .envelope-sub { font-size: 0.95rem; color: #94a3b8; margin-bottom: 25px; }
+        .envelope-title { font-family: var(--font-ar-title); font-size: 2rem; color: var(--silver-bright); margin-bottom: 10px; }
+        .envelope-sub { font-size: 0.95rem; color: #cbd5e1; margin-bottom: 25px; }
         .open-btn {
-            background: var(--gold-gradient); color: #040d1a; border: none;
+            background: var(--silver-gradient); color: #040d1a; border: none;
             padding: 12px 35px; border-radius: 30px; font-weight: 700; font-size: 1.05rem;
-            cursor: pointer; transition: 0.3s; box-shadow: 0 5px 20px rgba(212,175,55,0.4);
+            cursor: pointer; transition: 0.3s; box-shadow: 0 5px 20px rgba(255,255,255,0.4);
         }
         .open-btn:hover { transform: scale(1.06); }
-        /* Main Container */
-        .wrapper { max-width: 800px; margin: 0 auto; padding: 80px 20px 50px 20px; }
-        .card-panel {
-            background: rgba(10, 25, 47, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 28px; padding: 45px 25px; margin-bottom: 30px;
-            backdrop-filter: blur(15px); box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            position: relative; overflow: hidden;
-        }
 
-        /* Glowing Crown & Monogram Frame */
-        .royal-frame {
-            position: relative; width: 190px; height: 190px; margin: 0 auto 25px auto;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .royal-circle {
-            position: absolute; inset: 0; border-radius: 50%;
-            border: 2px solid transparent; background: linear-gradient(rgba(10,25,47,0.9), rgba(10,25,47,0.9)) padding-box, var(--gold-gradient) border-box;
-            animation: spinFrame 15s linear infinite; box-shadow: var(--gold-glow);
-        }
-        @keyframes spinFrame { 100% { transform: rotate(360deg); } }
-        .monogram-content { position: relative; z-index: 2; }
-        .monogram-content i { font-size: 1.5rem; color: #fcf6ba; margin-bottom: 5px; }
-        .couple-names-circle {
-            font-family: 'Amiri', serif; font-size: 1.8rem; font-weight: 700;
-            background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            line-height: 1.2;
-        }
-
-        .section-title {
-            font-family: var(--font-ar-title); font-size: 1.8rem; color: #fcf6ba;
-            margin-bottom: 20px; text-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
-        }
-
-        /* Countdown */
-        .countdown { display: flex; justify-content: center; gap: 12px; margin: 25px 0; direction: ltr; }
-        .time-box {
-            background: rgba(4, 13, 26, 0.8); border: 1px solid rgba(212, 175, 55, 0.4);
-            border-radius: 14px; padding: 12px 8px; min-width: 70px;
-        }
-        .time-box .num { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700; color: #ffffff; display: block; }
-        .time-box .lbl { font-size: 0.75rem; color: #94a3b8; }
-
-        /* Timeline Grid */
-        .timeline { display: flex; flex-direction: column; gap: 20px; text-align: right; margin-top: 20px; }
-        body.en .timeline { text-align: left; }
-        .timeline-item {
-            display: flex; align-items: center; gap: 15px;
-            background: rgba(255,255,255,0.03); border-right: 3px solid #b38728;
-            padding: 15px; border-radius: 8px;
-        }
-        body.en .timeline-item { border-right: none; border-left: 3px solid #b38728; }
-        .timeline-icon {
-            width: 45px; height: 45px; border-radius: 50%; background: rgba(212,175,55,0.1);
-            display: flex; align-items: center; justify-content: center;
-            color: #fcf6ba; font-size: 1.2rem; flex-shrink: 0;
-        }
-
-        /* Guest Messages Section */
-        .wish-input {
-            width: 100%; padding: 12px; border-radius: 12px; border: 1px solid rgba(212,175,55,0.3);
-            background: rgba(4, 13, 26, 0.7); color: #fff; margin-bottom: 10px; font-family: inherit;
-        }
-        .wish-btn {
-            background: var(--gold-gradient); color: #040d1a; border: none;
-            padding: 10px 25px; border-radius: 20px; font-weight: 700; cursor: pointer; width: 100%;
-        }
-        .wishes-list { margin-top: 20px; max-height: 200px; overflow-y: auto; text-align: right; }
-        body.en .wishes-list { text-align: left; }
-        .wish-card {
-            background: rgba(255,255,255,0.04); border-radius: 10px; padding: 10px 15px;
-            margin-bottom: 10px; border-right: 2px solid #fbf5b7;
-        }
-
-        /* RSVP */
-        .rsvp-btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-            background: var(--gold-gradient); color: #040d1a; text-decoration: none;
-            padding: 16px 35px; border-radius: 50px; font-weight: 800; font-size: 1.1rem;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.4); transition: 0.3s; width: 100%; max-width: 320px;
-        }
-        .rsvp-btn:hover { transform: translateY(-3px); box-shadow: 0 0 35px rgba(212, 175, 55, 0.7); }
-    </style>
-</head>
-<body>
-
-    <div class="controls-bar">
-        <button class="control-btn" onclick="toggleAudio()"><i id="musicIcon" class="fas fa-music"></i></button>
-        <button class="control-btn" onclick="toggleLang()"><i class="fas fa-globe"></i> <span id="langBtnText">English</span></button>
-    </div>
-
-    <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-piano-100-bpm-121529.mp3"></audio>
-
-    <!-- Royal Envelope Overlay -->
-    <div class="envelope-overlay" id="envelopeScreen" onclick="openEnvelope()">
-        <div class="envelope-box">
-            <div class="wax-seal">M&J</div>
-            <div class="envelope-title" id="envTitle">دعوة زفاف ملكية</div>
-            <div class="envelope-sub" id="envSub">انقر لفتح الرسالة الملكية واستعراض التفاصيل</div>
-            <button class="open-btn" id="envBtn">افتح الدعوة</button>
-        </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="wrapper">
-        
-        <!-- Header Card -->
-        <div class="card-panel" data-aos="fade-up">
-            <div class="royal-frame">
-                <div class="royal-circle"></div>
-                <div class="monogram-content">
-                    <i class="fas fa-crown"></i>
-                    <div class="couple-names-circle" id="namesText">محمد<br>&<br>جودي</div>
-                </div>
-            </div>
-            <div class="section-title" id="invHeader">دعوة لحضور حفل الزفاف الملكي</div>
-            <p style="color: #94a3b8; line-height: 1.8; margin-bottom: 20px;" id="invQuote">
-                "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"<br>
-                يسعدنا ويشرفنا حضوركم لمشاركتنا أروع لحظات العمر في يوم زفافنا المميز.
-            </p>
-
-            <div class="countdown">
-                <div class="time-box"><span class="num" id="days">00</span><span class="lbl" id="lDays">يوم</span></div>
-                <div class="time-box"><span class="num" id="hours">00</span><span class="lbl" id="lHours">ساعة</span></div>
-                <div class="time-box"><span class="num" id="mins">00</span><span class="lbl" id="lMins">دقيقة</span></div>
-                <div class="time-box"><span class="num" id="secs">00</span><span class="lbl" id="lSecs">ثانية</span></div>
-            </div>
-        </div>
-
-        <!-- Event Timeline -->
-        <div class="card-panel" data-aos="fade-up">
-            <div class="section-title" id="timeTitle">برنامج الحفل</div>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-glass-cheers"></i></div>
-                    <div><h4 id="t1H">8:00 مساءً - استقبال الضيوف</h4><p style="font-size:0.85rem; color:#94a3b8;" id="t1P">بداية الترحيب بالضيوف الكرام في القاعة</p></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-heart"></i></div>
-                    <div><h4 id="t2H">9:00 مساءً - زفة العروسين</h4><p style="font-size:0.85rem; color:#94a3b8;" id="t2P">دخول العروسين وبدء الفقرات السعيدة</p></div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
-                    <div><h4 id="t3H">10:30 مساءً - بوفيه العشاء</h4><p style="font-size:0.85rem; color:#94a3b8;" id="t3P">تناول العشاء والتقاط الصور التذكارية</p></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Guest Wishbook -->
-        <div class="card-panel" data-aos="fade-up">
-            <div class="section-title" id="wishTitle">سجل تهاني المعازيم</div>
-            <input type="text" id="guestName" class="wish-input" placeholder="اسمك الكريم">
-            <textarea id="guestMsg" class="wish-input" rows="3" placeholder="اكتب تهنئتك للعروسين هنا..."></textarea>
-            <button class="wish-btn" onclick="addWish()" id="sendWishBtn">إرسال التهنئة</button>
-            <div class="wishes-list" id="wishesList"></div>
-        </div>
-
-        <!-- RSVP & Venue -->
-        <div class="card-panel" data-aos="fade-up">
-            <div class="section-title" id="venueHeader">المكان وتأكيد الحضور</div>
-            <p style="color: #cbd5e1; margin-bottom: 20px;" id="venueVal"><i class="fas fa-map-marker-alt" style="color:#fcf6ba;"></i> قاعة ليليتي - الجمعة، 7 أغسطس 2026 (8:00 مساءً)</p>
-            <a href="https://wa.me/201224992674?text=%D8%A3%D9%84%D9%81%20%D9%85%D8%A8%D8%B1%D9%88%D9%83!%20%D9%8A%D8%B3%D8%B9%D8%AF%D9%86%D9%8A%20%D8%AA%D8%A3%D9%83%D9%8A%D8%AF%20%D8%AD%D8%B6%D9%88%D8%B1%D9%8A%20%D8%AD%D9%81%D9%84%20%D8%A7%D9%84%D8%B2%D9%81%D8%A7%D9%81" class="rsvp-btn" target="_blank" id="rsvpBtnText">
-                <i class="fab fa-whatsapp"></i> تأكيد الحضور عبر واتساب
-            </a>
-        </div>
-
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-        let isArabic = true;
-
-        function openEnvelope() {
-            document.getElementById('envelopeScreen').classList.add('opened');
-            toggleAudio();
-        }
-
-        const audio = document.getElementById("bgAudio");
-        const musicIcon = document.getElementById("musicIcon");
-        function toggleAudio() {
-            if (audio.paused) { audio.play(); musicIcon.className = "fas fa-pause"; }
-            else { audio.pause(); musicIcon.className = "fas fa-music"; }
-        }
-
-        function toggleLang() {
-            isArabic = !isArabic;
-            document.body.dir = isArabic ? "rtl" : "ltr";
-            document.getElementById('langBtnText').innerText = isArabic ? "English" : "العربية";
-            document.getElementById('envTitle').innerText = isArabic ? "دعوة زفاف ملكية" : "Royal Wedding Invitation";
-            document.getElementById('envSub').innerText = isArabic ? "انقر لفتح الرسالة الملكية واستعراض التفاصيل" : "Click to open the royal envelope";
-            document.getElementById('envBtn').innerText = isArabic ? "افتح الدعوة" : "Open Invitation";
-            document.getElementById('namesText').innerHTML = isArabic ? "محمد<br>&<br>جودي" : "Mohamed<br>&<br>Judy";
-            document.getElementById('invHeader').innerText = isArabic ? "دعوة لحضور حفل الزفاف الملكي" : "Royal Wedding Invitation";
-            document.getElementById('invQuote').innerText = isArabic ? '"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"' : "Request the honor of your presence at their wedding celebration";
-            document.getElementById('timeTitle').innerText = isArabic ? "برنامج الحفل" : "Wedding Program";
-            document.getElementById('wishTitle').innerText = isArabic ? "سجل تهاني المعازيم" : "Guestbook Wishes";
-            document.getElementById('guestName').placeholder = isArabic ? "اسمك الكريم" : "Your Name";
-            document.getElementById('guestMsg').placeholder = isArabic ? "اكتب تهنئتك للعروسين هنا..." : "Write your wishes here...";
-            document.getElementById('sendWishBtn').innerText = isArabic ? "إرسال التهنئة" : "Send Wishes";
-            document.getElementById('venueHeader').innerText = isArabic ? "المكان وتأكيد الحضور" : "Venue & RSVP";
-            document.getElementById('rsvpBtnText').innerHTML = isArabic ? '<i class="fab fa-whatsapp"></i> تأكيد الحضور عبر واتساب' : '<i class="fab fa-whatsapp"></i> RSVP via WhatsApp';
-        }
-
-        function addWish() {
-            const name = document.getElementById('guestName').value.trim();
-            const msg = document.getElementById('guestMsg').value.trim();
-            if(name && msg) {
-                const list = document.getElementById('wishesList');
-                const card = document.createElement('div');
-                card.className = 'wish-card';
-                card.innerHTML = `<strong>${name}</strong><p style="font-size:0.85rem; color:#cbd5e1;">${msg}</p>`;
-                list.prepend(card);
-                document.getElementById('guestName').value = '';
-                document.getElementById('guestMsg').value = '';
-            }
-        }
-
-        const targetDate = new Date("August 7, 2026 20:00:00").getTime();
-        setInterval(() => {
-            const now = new Date().getTime();
-            const diff = targetDate - now;
-            if(diff > 0) {
-                document.getElementById("days").innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-                document.getElementById("hours").innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-                document.getElementById("mins").innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
-                document.getElementById("secs").innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-            }
-        }, 1000);
-    </script>
-</body>
-</html>
         /* Main Container */
         .wrapper { max-width: 800px; margin: 0 auto; padding: 80px 20px 50px 20px; }
         .card-panel {
@@ -413,7 +182,7 @@
     <audio id="bgAudio" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-piano-100-bpm-121529.mp3"></audio>
 
     <!-- Royal Envelope Overlay -->
-    <div class="envelope-overlay" id="envelopeScreen" onclick="openEnvelope()">
+    <div class="envelope-overlay" id="envelopeScreen" onclick="dismissEnvelope()">
         <div class="envelope-box">
             <div class="wax-seal">M&J</div>
             <div class="envelope-title" id="envTitle">دعوة زفاف ملكية</div>
@@ -492,16 +261,23 @@
         AOS.init({ duration: 1000, once: true });
         let isArabic = true;
 
-        function openEnvelope() {
-            document.getElementById('envelopeScreen').classList.add('opened');
+        function dismissEnvelope() {
+            const env = document.getElementById('envelopeScreen');
+            env.style.opacity = '0';
+            setTimeout(() => { env.style.display = 'none'; }, 800);
             toggleAudio();
         }
 
         const audio = document.getElementById("bgAudio");
         const musicIcon = document.getElementById("musicIcon");
         function toggleAudio() {
-            if (audio.paused) { audio.play(); musicIcon.className = "fas fa-pause"; }
-            else { audio.pause(); musicIcon.className = "fas fa-music"; }
+            if (audio.paused) { 
+                audio.play().catch(() => {});
+                musicIcon.className = "fas fa-pause"; 
+            } else { 
+                audio.pause(); 
+                musicIcon.className = "fas fa-music"; 
+            }
         }
 
         function toggleLang() {
