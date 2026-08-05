@@ -1,0 +1,173 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin:0;
+    background:
+    radial-gradient(circle at top, #123b75, #00152f 70%);
+    color:white;
+    font-family: "Georgia", serif;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+
+/* خلفية لمعة */
+.stars{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background-image:
+    radial-gradient(#ffffff 1px, transparent 1px);
+    background-size:40px 40px;
+    opacity:.15;
+    z-index:-1;
+    animation:move 20s linear infinite;
+}
+
+
+@keyframes move{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(-200px);
+    }
+}
+
+
+.hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+
+.top{
+    color:#d8d8d8;
+    font-size:18px;
+}
+
+
+h1{
+    font-size:60px;
+    margin:20px 0;
+    color:#eeeeee;
+    text-shadow:
+    0 0 10px #fff,
+    0 0 25px #c0c0c0;
+}
+
+
+h2{
+    color:#d4d4d4;
+    font-weight:normal;
+}
+
+
+.arabic{
+    direction:rtl;
+    margin-top:50px;
+}
+
+
+.card{
+    width:90%;
+    max-width:650px;
+    margin:35px auto;
+    padding:35px 25px;
+
+    background:
+    linear-gradient(
+    145deg,
+    rgba(255,255,255,.12),
+    rgba(255,255,255,.03)
+    );
+
+    border:2px solid #c0c0c0;
+    border-radius:30px;
+
+    box-shadow:
+    0 0 25px rgba(192,192,192,.4);
+
+    backdrop-filter:blur(10px);
+
+    animation:fade 1.5s ease;
+}
+
+
+@keyframes fade{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+hr{
+    border:0;
+    height:1px;
+    background:#c0c0c0;
+    margin:25px;
+}
+
+
+#countdown{
+    font-size:30px;
+    color:#fff;
+    margin:20px;
+    text-shadow:0 0 15px silver;
+}
+
+
+a{
+    display:inline-block;
+    margin-top:20px;
+    padding:15px 30px;
+
+    background:#c0c0c0;
+    color:#00152f;
+
+    border-radius:50px;
+    text-decoration:none;
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+
+a:hover{
+    transform:scale(1.05);
+}
+
+
+.footer{
+    padding:50px 20px;
+    color:#ddd;
+}
+
+
+/* موبايل */
+@media(max-width:600px){
+
+    h1{
+        font-size:42px;
+    }
+
+    h2{
+        font-size:22px;
+    }
+
+    .card{
+        padding:25px 15px;
+    }
+
+}
