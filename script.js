@@ -1,6 +1,6 @@
 const weddingDate = new Date("August 7, 2026 20:00:00").getTime();
 
-const countdown = setInterval(function () {
+const timer = setInterval(function(){
 
     const now = new Date().getTime();
 
@@ -28,27 +28,32 @@ const countdown = setInterval(function () {
 
 
     document.getElementById("countdown").innerHTML =
+
     `
-    ${days} Days 
-    ${hours} Hours 
-    ${minutes} Minutes 
+    ${days} Days |
+    ${hours} Hours |
+    ${minutes} Minutes |
     ${seconds} Seconds
-    <br>
-    <span>
-    ${days} يوم 
-    ${hours} ساعة 
-    ${minutes} دقيقة 
+
+    <br><br>
+
+    ${days} يوم |
+    ${hours} ساعة |
+    ${minutes} دقيقة |
     ${seconds} ثانية
-    </span>
     `;
 
 
     if(distance < 0){
 
-        clearInterval(countdown);
+        clearInterval(timer);
 
         document.getElementById("countdown").innerHTML =
-        "The Wedding Day Has Arrived ❤️<br>وصل يوم الفرح ❤️";
+        `
+        The Wedding Day Has Arrived ❤️
+        <br>
+        وصل يوم الفرح ❤️
+        `;
     }
 
 
