@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>دعوة زفاف | محمد وجودي</title>
+    <title>Wedding Invitation | Mohamed & Judy</title>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@300;400;600;700;800&family=Cinzel:wght@600;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -36,9 +36,34 @@
             pointer-events: none; z-index: 1;
         }
 
+        /* Welcome Overlay Modal */
+        .welcome-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(2, 8, 19, 0.95); backdrop-filter: blur(25px);
+            z-index: 999; display: flex; justify-content: center; align-items: center;
+            padding: 20px; transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+        .welcome-modal {
+            background: rgba(10, 25, 47, 0.85); border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 30px; padding: 40px 25px; max-width: 500px; width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9), var(--silver-glow);
+            text-align: center; animation: modalPop 0.6s ease-out;
+        }
+        @keyframes modalPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        .enter-btn {
+            background: var(--silver-gradient); color: #030a16; border: none;
+            padding: 14px 35px; border-radius: 50px; font-weight: 800; font-size: 1.1rem;
+            cursor: pointer; margin-top: 25px; transition: 0.3s; width: 100%; max-width: 250px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+        .enter-btn:hover { transform: scale(1.05); box-shadow: 0 0 35px rgba(255,255,255,0.8); }
+
         .top-bar {
             position: fixed; top: 15px; left: 15px; right: 15px;
-            display: flex; justify-content: space-between; z-index: 100; pointer-events: none;
+            display: flex; justify-content: flex-end; z-index: 100; pointer-events: none;
         }
         .top-bar * { pointer-events: auto; }
         
@@ -61,7 +86,6 @@
             border-radius: 30px; padding: 40px 20px; margin-bottom: 30px;
             backdrop-filter: blur(20px);
             box-shadow: 0 20px 50px rgba(0,0,0,0.8), inset 0 0 20px rgba(255, 255, 255, 0.05);
-            transition: transform 0.6s ease, opacity 0.6s ease;
         }
 
         .crown-container {
@@ -78,47 +102,46 @@
         }
         .crown-container i { font-size: 2rem; color: #ffffff; }
 
-        .names-title {
-            font-family: var(--font-ar); font-size: 3.2rem; font-weight: 700;
+        .names-title-en {
+            font-family: var(--font-en); font-size: 2.8rem; font-weight: 900; letter-spacing: 2px;
             background: var(--silver-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            line-height: 1.2; margin-bottom: 15px; text-shadow: 0 0 20px rgba(255,255,255,0.2);
+            line-height: 1.2; margin-bottom: 5px;
         }
-
+        .names-title-ar {
+            font-family: var(--font-ar); font-size: 2.2rem; font-weight: 700;
+            color: #e2e8f0; line-height: 1.2; margin-bottom: 15px;
+        }
         .wedding-badge {
             display: inline-block; padding: 6px 22px; border-radius: 20px;
             background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.4);
             font-size: 0.9rem; color: #ffffff; margin-bottom: 20px; letter-spacing: 1px;
         }
 
-        .quran-verse {
-            font-family: var(--font-ar); font-size: 1.2rem; color: #cbd5e1;
-            line-height: 1.8; margin-bottom: 25px;
-        }
+        .bilingual-block { margin-bottom: 25px; }
+        .en-text { font-family: 'Cinzel', serif; font-size: 1.05rem; color: #f8fafc; letter-spacing: 0.5px; display: block; margin-bottom: 6px; }
+        .ar-text { font-family: var(--font-ar); font-size: 1.25rem; color: #cbd5e1; display: block; }
+
         /* Countdown */
         .countdown-container { display: flex; justify-content: center; gap: 12px; direction: ltr; margin-top: 25px; }
         .count-box {
             background: rgba(3, 10, 22, 0.85); border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 18px; padding: 14px 8px; min-width: 72px;
+            border-radius: 18px; padding: 14px 8px; min-width: 75px;
             box-shadow: 0 8px 25px rgba(0,0,0,0.5);
             transition: 0.3s;
         }
-        .count-box:hover { border-color: #ffffff; transform: translateY(-3px); }
         .count-num { font-family: var(--font-en); font-size: 1.8rem; font-weight: 800; color: #ffffff; display: block; }
-        .count-label { font-size: 0.75rem; color: #94a3b8; margin-top: 4px; }
+        .count-label { font-size: 0.75rem; color: #94a3b8; margin-top: 4px; display: block; }
 
-        .card-header { font-family: var(--font-ar); font-size: 1.9rem; color: #ffffff; margin-bottom: 25px; }
+        .card-header-en { font-family: var(--font-en); font-size: 1.6rem; color: #ffffff; letter-spacing: 1px; margin-bottom: 2px; }
+        .card-header-ar { font-family: var(--font-ar); font-size: 1.4rem; color: #cbd5e1; margin-bottom: 25px; }
 
         /* Timeline */
-        .timeline-list { display: flex; flex-direction: column; gap: 15px; text-align: right; }
-        body.en .timeline-list { text-align: left; }
+        .timeline-list { display: flex; flex-direction: column; gap: 15px; text-align: left; }
         .timeline-row {
             display: flex; align-items: center; gap: 15px;
-            background: rgba(255,255,255,0.04); border-right: 3px solid #ffffff;
+            background: rgba(255,255,255,0.04); border-left: 3px solid #ffffff;
             padding: 15px; border-radius: 14px; transition: 0.3s;
         }
-        .timeline-row:hover { background: rgba(255,255,255,0.08); transform: translateX(-5px); }
-        body.en .timeline-row:hover { transform: translateX(5px); }
-        body.en .timeline-row { border-right: none; border-left: 3px solid #ffffff; }
         .timeline-ico {
             width: 45px; height: 45px; border-radius: 50%;
             background: rgba(255,255,255,0.15); color: #fff;
@@ -126,7 +149,6 @@
             font-size: 1.1rem; box-shadow: 0 0 10px rgba(255,255,255,0.2);
         }
 
-        /* Interactive Hearts Button */
         .celebrate-btn {
             background: transparent; border: 1px solid rgba(255,255,255,0.4);
             color: #ffffff; padding: 12px 25px; border-radius: 30px;
@@ -135,16 +157,14 @@
         }
         .celebrate-btn:hover { background: rgba(255,255,255,0.15); transform: scale(1.05); }
 
-        /* RSVP Button */
         .whatsapp-btn {
-            display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+            display: inline-flex; flex-direction: column; align-items: center; justify-content: center;
             background: var(--silver-gradient); color: #030a16; text-decoration: none;
-            padding: 16px 35px; border-radius: 50px; font-weight: 800; font-size: 1.1rem;
+            padding: 14px 25px; border-radius: 50px; font-weight: 800; font-size: 1rem;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.3); transition: 0.3s; width: 100%; max-width: 320px;
         }
         .whatsapp-btn:hover { transform: translateY(-4px); box-shadow: 0 0 35px rgba(255,255,255,0.8); }
 
-        /* Form Controls */
         .input-field {
             width: 100%; padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,0.25);
             background: rgba(3, 10, 22, 0.8); color: #fff; margin-bottom: 12px; font-family: inherit;
@@ -159,9 +179,19 @@
 
     <canvas id="sparkleCanvas"></canvas>
 
+    <!-- Welcome Modal Overlay -->
+    <div class="welcome-overlay" id="welcomeOverlay">
+        <div class="welcome-modal">
+            <div class="crown-container"><i class="fas fa-crown"></i></div>
+            <h2 style="font-family: var(--font-en); font-size: 1.8rem; color: #fff; margin-bottom: 5px;">Welcome to Our Wedding</h2>
+            <h3 style="font-family: var(--font-ar); font-size: 1.6rem; color: #cbd5e1; margin-bottom: 15px;">أهلاً بكم في حفل زفافنا</h3>
+            <p style="font-size: 0.95rem; color: #94a3b8;">Mohamed & Judy's Official Invitation<br>دعوة زفاف محمد وجودي</p>
+            <button class="enter-btn" onclick="enterSite()"><i class="fas fa-envelope-open"></i> Open Invitation / فتح الدعوة</button>
+        </div>
+    </div>
+
     <div class="top-bar">
-        <button class="icon-btn" onclick="toggleMusic()"><i id="musicIcon" class="fas fa-music"></i> <span id="musicText">الموسيقى</span></button>
-        <button class="icon-btn" onclick="toggleLanguage()"><i class="fas fa-globe"></i> <span id="langText">English</span></button>
+        <button class="icon-btn" onclick="toggleMusic()"><i id="musicIcon" class="fas fa-music"></i> <span id="musicText">Music / الموسيقى</span></button>
     </div>
 
     <audio id="bgMusic" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-piano-100-bpm-121529.mp3"></audio>
@@ -171,63 +201,90 @@
         <!-- Main Invitation Card -->
         <div class="glass-card">
             <div class="crown-container"><i class="fas fa-crown"></i></div>
-            <div class="wedding-badge" id="badgeText">دعوة زفاف ملكية</div>
-            <div class="names-title" id="namesTitle">محمد & جودي</div>
-            <p class="quran-verse" id="verseText">
-                "وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"<br>
-                يسعدنا أن تتوج فرحتنا بحضوركم الكريم لمشاركتنا أجمل لحظات عمرنا.
-            </p>
+            <div class="wedding-badge">ROYAL WEDDING INVITATION | دعوة زفاف ملكية</div>
+            <div class="names-title-en">MOHAMED & JUDY</div>
+            <div class="names-title-ar">محمد & جودي</div>
+            
+            <div class="bilingual-block">
+                <span class="en-text">We request the honor of your presence to celebrate our marriage.</span>
+                <span class="ar-text">"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"<br>يسعدنا أن تتوج فرحتنا بحضوركم الكريم لمشاركتنا أجمل لحظات عمرنا.</span>
+            </div>
 
-            <button class="celebrate-btn" onclick="triggerConfetti()"><i class="fas fa-heart" style="color:#ffffff;"></i> شاركنا الفرحة</button>
+            <button class="celebrate-btn" onclick="triggerConfetti()"><i class="fas fa-heart" style="color:#ffffff;"></i> Celebrate / شاركنا الفرحة</button>
 
             <div class="countdown-container">
-                <div class="count-box"><span class="count-num" id="d">00</span><span class="count-label" id="lD">يوم</span></div>
-                <div class="count-box"><span class="count-num" id="h">00</span><span class="count-label" id="lH">ساعة</span></div>
-                <div class="count-box"><span class="count-num" id="m">00</span><span class="count-label" id="lM">دقيقة</span></div>
-                <div class="count-box"><span class="count-num" id="s">00</span><span class="count-label" id="lS">ثانية</span></div>
+                <div class="count-box"><span class="count-num" id="d">00</span><span class="count-label">Days / أيام</span></div>
+                <div class="count-box"><span class="count-num" id="h">00</span><span class="count-label">Hours / ساعات</span></div>
+                <div class="count-box"><span class="count-num" id="m">00</span><span class="count-label">Mins / دقائق</span></div>
+                <div class="count-box"><span class="count-num" id="s">00</span><span class="count-label">Secs / ثواني</span></div>
             </div>
         </div>
-
         <!-- Timeline Program -->
         <div class="glass-card">
-            <div class="card-header" id="progHeader">مواعيد الحفل</div>
+            <div class="card-header-en">EVENT PROGRAM</div>
+            <div class="card-header-ar">مواعيد الحفل</div>
             <div class="timeline-list">
                 <div class="timeline-row">
                     <div class="timeline-ico"><i class="fas fa-glass-cheers"></i></div>
-                    <div><h4 id="p1Title">8:00 مساءً - استقبال الضيوف</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="p1Sub">ترحيب بالمعازيم والضيوف الكرام</p></div>
+                    <div>
+                        <h4 style="font-size:1.05rem; color:#fff;">8:00 PM - Guest Arrival</h4>
+                        <h4 style="font-size:0.95rem; color:#cbd5e1; font-family:var(--font-ar);">8:00 مساءً - استقبال الضيوف الكرام</h4>
+                    </div>
                 </div>
                 <div class="timeline-row">
                     <div class="timeline-ico"><i class="fas fa-ring"></i></div>
-                    <div><h4 id="p2Title">9:00 مساءً - دخول العروسين</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="p2Sub">بدء فقرات الفرح والاحتفال</p></div>
+                    <div>
+                        <h4 style="font-size:1.05rem; color:#fff;">9:00 PM - Couple Entrance</h4>
+                        <h4 style="font-size:0.95rem; color:#cbd5e1; font-family:var(--font-ar);">9:00 مساءً - دخول العروسين وبدء الفقرات</h4>
+                    </div>
                 </div>
                 <div class="timeline-row">
                     <div class="timeline-ico"><i class="fas fa-utensils"></i></div>
-                    <div><h4 id="p3Title">10:30 مساءً - العشاء</h4><p style="font-size:0.85rem; color:#cbd5e1;" id="p3Sub">التقاط الصور التذكارية والبوفيه</p></div>
+                    <div>
+                        <h4 style="font-size:1.05rem; color:#fff;">10:30 PM - Dinner & Cake</h4>
+                        <h4 style="font-size:0.95rem; color:#cbd5e1; font-family:var(--font-ar);">10:30 مساءً - بوفيه العشاء وتقطيع التورتة</h4>
+                    </div>
                 </div>
             </div>
         </div>
-         <!-- Wishes -->
+
+        <!-- Guestbook Wishes -->
         <div class="glass-card">
-            <div class="card-header" id="wishHeader">تهاني الأصدقاء</div>
-            <input type="text" id="gName" class="input-field" placeholder="اسمك الكريم">
-            <textarea id="gMsg" class="input-field" rows="2" placeholder="اكتب تهنئتك للعروسين هنا..."></textarea>
-            <button class="submit-btn" onclick="sendWish()" id="wishBtn">إرسال التهنئة</button>
-            <div id="wList" style="margin-top:15px; text-align:right;"></div>
+            <div class="card-header-en">GUESTBOOK WISHES</div>
+            <div class="card-header-ar">تهاني الأصدقاء والمعازيم</div>
+            <input type="text" id="gName" class="input-field" placeholder="Your Name / اسمك الكريم">
+            <textarea id="gMsg" class="input-field" rows="2" placeholder="Write your wish... / اكتب تهنئتك هنا..."></textarea>
+            <button class="submit-btn" onclick="sendWish()">Send Wish / إرسال التهنئة</button>
+            <div id="wList" style="margin-top:15px; text-align:left;"></div>
         </div>
 
         <!-- Venue & RSVP -->
         <div class="glass-card">
-            <div class="card-header" id="rsvpHeader">المكان وتأكيد الحضور</div>
-            <p style="color:#cbd5e1; margin-bottom:20px; font-size: 1.05rem;" id="venueInfo"><i class="fas fa-map-marker-alt" style="color:#ffffff;"></i> قاعة ليليتي - الجمعة، 7 أغسطس 2026 (8:00 مساءً)</p>
-            <a href="https://wa.me/201224992674?text=%D8%A3%D9%84%D9%81%20%D9%85%D8%A8%D8%B1%D9%88%D9%83!%20%D9%8A%D8%B3%D8%B9%D8%AF%D9%86%D9%8A%20%D8%AA%D8%A3%D9%83%D9%8A%D8%AF%20%D8%AD%D8%B6%D9%88%D8%B1%D9%8A" target="_blank" class="whatsapp-btn" id="waBtn">
-                <i class="fab fa-whatsapp"></i> تأكيد الحضور عبر واتساب
+            <div class="card-header-en">VENUE & RSVP</div>
+            <div class="card-header-ar">المكان وتأكيد الحضور</div>
+            
+            <p style="color:#ffffff; font-weight:700; font-size:1.1rem; margin-bottom:4px;"><i class="fas fa-map-marker-alt"></i> Laylati Hall | قاعة ليليتي</p>
+            <p style="color:#cbd5e1; font-size:0.95rem; margin-bottom:20px;">Friday, August 7, 2026 - 8:00 PM<br>الجمعة، 7 أغسطس 2026 - الساعة 8:00 مساءً</p>
+            
+            <a href="https://wa.me/201224992674?text=%D8%A3%D9%84%D9%81%20%D9%85%D8%A8%D8%B1%D9%88%D9%83!%20%D9%8A%D8%B3%D8%B9%D8%AF%D9%86%D9%8A%20%D8%AA%D8%A3%D9%83%D9%8A%D8%AF%20%D8%AD%D8%B6%D9%88%D8%B1%D9%8A" target="_blank" class="whatsapp-btn">
+                <span><i class="fab fa-whatsapp"></i> Confirm RSVP</span>
+                <span style="font-size:0.85rem; font-family:var(--font-ar); opacity:0.9;">تأكيد الحضور عبر واتساب</span>
             </a>
         </div>
 
     </div>
 
     <script>
-        /* Sparkle Background Animation */
+        /* Welcome Overlay Action */
+        function enterSite() {
+            const overlay = document.getElementById('welcomeOverlay');
+            overlay.style.opacity = '0';
+            overlay.style.visibility = 'hidden';
+            toggleMusic(); // Play audio when entering
+            triggerConfetti(); // Fire initial confetti
+        }
+
+        /* Sparkle Canvas */
         const canvas = document.getElementById('sparkleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -273,37 +330,21 @@
         }
         animate();
 
-        /* Interactive Confetti */
         function triggerConfetti() {
             confetti({
-                particleCount: 80,
-                spread: 70,
+                particleCount: 90,
+                spread: 80,
                 origin: { y: 0.6 },
-                colors: ['#ffffff', '#e6f1ff', '#b3b3b3']
+                colors: ['#ffffff', '#e6f1ff', '#a6a6a6']
             });
         }
 
-        /* Language & Audio Controls */
-        let isAr = true;
         const music = document.getElementById('bgMusic');
         const mIcon = document.getElementById('musicIcon');
 
         function toggleMusic() {
             if (music.paused) { music.play(); mIcon.className = "fas fa-pause"; }
             else { music.pause(); mIcon.className = "fas fa-music"; }
-        }
-
-        function toggleLanguage() {
-            isAr = !isAr;
-            document.body.dir = isAr ? "rtl" : "ltr";
-            document.getElementById('langText').innerText = isAr ? "English" : "العربية";
-            document.getElementById('badgeText').innerText = isAr ? "دعوة زفاف ملكية" : "Royal Wedding Invitation";
-            document.getElementById('namesTitle').innerText = isAr ? "محمد & جودي" : "Mohamed & Judy";
-            document.getElementById('verseText').innerHTML = isAr ? '"وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا"<br>يسعدنا أن تتوج فرحتنا بحضوركم الكريم لمشاركتنا أجمل لحظات عمرنا.' : "We request the honor of your presence to celebrate our wedding day.";
-            document.getElementById('progHeader').innerText = isAr ? "مواعيد الحفل" : "Event Schedule";
-            document.getElementById('wishHeader').innerText = isAr ? "تهاني الأصدقاء" : "Guestbook";
-            document.getElementById('rsvpHeader').innerText = isAr ? "المكان وتأكيد الحضور" : "Venue & RSVP";
-            document.getElementById('waBtn').innerHTML = isAr ? '<i class="fab fa-whatsapp"></i> تأكيد الحضور عبر واتساب' : '<i class="fab fa-whatsapp"></i> RSVP via WhatsApp';
         }
 
         function sendWish() {
@@ -316,7 +357,7 @@
                 box.style.padding = '12px';
                 box.style.borderRadius = '10px';
                 box.style.marginBottom = '8px';
-                box.style.borderRight = '3px solid #ffffff';
+                box.style.borderLeft = '3px solid #ffffff';
                 box.innerHTML = `<strong>${name}</strong><p style="font-size:0.85rem; color:#cbd5e1;">${msg}</p>`;
                 list.prepend(box);
                 document.getElementById('gName').value = '';
@@ -324,7 +365,6 @@
             }
         }
 
-        /* Target Countdown */
         const target = new Date("August 7, 2026 20:00:00").getTime();
         setInterval(() => {
             const diff = target - new Date().getTime();
@@ -338,4 +378,3 @@
     </script>
 </body>
 </html>
-       
